@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    //based off of brackeys gun tutorial
     public float damage = 10f;
     public float range = 100f;
     public float fireRate = 15f;
