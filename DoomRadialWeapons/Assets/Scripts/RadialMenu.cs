@@ -5,7 +5,11 @@ public class RadialMenu : MonoBehaviour
     [SerializeField]
     GameObject EntryPrefab;
 
-    List<RadialMenuEntry> Entries;
+    public List<RadialMenuEntry> Entries;
+    private Dictionary<int,GameObject> entryDictionary;
+    //a get set would be a good idea here
+    public bool radialMenuOpen = false;
+    public int maxEntries = 3;
 
     public float radius = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,27 +17,37 @@ public class RadialMenu : MonoBehaviour
     {
         Entries = new List<RadialMenuEntry>();
     }
-
-    void AddEntry(string label)
+ 
+    //how can we avoid update cause I think the radial menu should handle communication with all the buttons and can have the most recent selected value;
+    //when we add an entry we could also assign it a weapon reference (but then the weapon references are not connected and The programmer just has to know)
+    //I do not think the answer is to have a refernce to the weapons whmeselves nor the player inventory.
+    public void InitializeData(Dictionary<int,GameObject> objectDictionary)
+    {
+        entryDictionary = objectDictionary;
+    }
+    void AddEntry(GameObject entryRef, int i)
     {
         GameObject entry = Instantiate(EntryPrefab, transform);
         RadialMenuEntry radialMenuEntry = entry.GetComponent<RadialMenuEntry>();
-        radialMenuEntry.SetLabel(label);
 
+        string label = entryRef.name.ToString();
+        radialMenuEntry.SetLabel(label);
+        radialMenuEntry.SetitemReference(i);
         Entries.Add(radialMenuEntry);
     }
-
     public void Open()
     {
-        for(int i=0; i<5; i++)
+        //how can each button with its label correspond to the selected object reference
+        for(int i=0; i<maxEntries; i++)
         {
-            AddEntry("Button" + i.ToString());
+            //the For is the gun reference with I
+            AddEntry(entryDictionary[i],i);
         }
         Rearrange();
     }
     public void Close()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < maxEntries; i++)
         {
             //RectTransform rect = Entries[i].GetComponent<RectTransform>();
             GameObject entry = Entries[i].gameObject;
@@ -45,6 +59,7 @@ public class RadialMenu : MonoBehaviour
         }
         Entries.Clear();
     }
+    [ContextMenu("Toggle")]
     public void Toggle()
     {
         if (Entries.Count ==0)
@@ -61,7 +76,8 @@ public class RadialMenu : MonoBehaviour
         for(int i = 0; i <Entries.Count; i++)
         {
             float x = Mathf.Sin(radiansOfSeparation * i) * radius;
-            float y = Mathf.Sin(radiansOfSeparation * i) * radius;
+            //float y = Mathf.Sin(radiansOfSeparation * i) * radius;
+            float y = Mathf.Cos(radiansOfSeparation * i) * radius;
 
             Entries[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(x, y, 0);
         }

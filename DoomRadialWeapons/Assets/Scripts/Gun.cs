@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("fired");
+        Debug.Log("fired" + name);
         //I dont have a particle system but if it would work like this
         muzzleFlash.Play();
         RaycastHit hit;
