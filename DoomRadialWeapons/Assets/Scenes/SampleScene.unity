@@ -5001,6 +5001,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeapon: 0
+  gunList:
+  - {fileID: 1604557502}
+  - {fileID: 595019493}
+  - {fileID: 1514837857}
 --- !u!1 &114407969
 GameObject:
   m_ObjectHideFlags: 0
@@ -9966,6 +9970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 291616833}
   - component: {fileID: 291616834}
+  - component: {fileID: 291616835}
   m_Layer: 5
   m_Name: RadialMenu
   m_TagString: Untagged
@@ -10005,6 +10010,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntryPrefab: {fileID: 956518862006442746, guid: 5511ca4edb6970d4f9f6e3438966fa8d, type: 3}
+  Entries: []
+  radialMenuOpen: 0
+  maxEntries: 3
+  radius: 100
+--- !u!114 &291616835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291616832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c7fb0431305ca4bb29d8bd5df71e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radialMenu: {fileID: 291616834}
+  weaponManager: {fileID: 105741055}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -10313,6 +10336,7 @@ MonoBehaviour:
   range: 100
   fireRate: 15
   impactForce: 10
+  fireable: 1
   fpsCam: {fileID: 330585545}
   muzzleFlash: {fileID: 114407972}
   impactEffect: {fileID: 0}
@@ -10551,7 +10575,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -10810,6 +10834,7 @@ MonoBehaviour:
   range: 100
   fireRate: 15
   impactForce: 10
+  fireable: 1
   fpsCam: {fileID: 330585545}
   muzzleFlash: {fileID: 60883908}
   impactEffect: {fileID: 0}
@@ -10862,6 +10887,7 @@ MonoBehaviour:
   range: 100
   fireRate: 15
   impactForce: 10
+  fireable: 1
   fpsCam: {fileID: 330585545}
   muzzleFlash: {fileID: 1679766087}
   impactEffect: {fileID: 0}
