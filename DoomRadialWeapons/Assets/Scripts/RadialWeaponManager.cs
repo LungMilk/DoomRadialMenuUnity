@@ -42,11 +42,13 @@ public class RadialWeaponManager : MonoBehaviour
         if (radialMenu.radialMenuOpen && radialMenu.Entries.Count < radialMenu.maxEntries)
         {
             radialMenu.Open();
+            weaponManager.SetFireState(false);
             BindButtonEvents();
         }
         //i am starting to rethink having the weapons spawn and despawn as radial menu entires every thime I press the button but its a messy prototype, kinda
         else if (radialMenu.Entries.Count > 0 && radialMenu.radialMenuOpen == false)
         {
+            weaponManager.SetFireState(true);
             radialMenu.Close();
         }
 

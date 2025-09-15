@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class WeaponManager : MonoBehaviour
 {
     //based off of brackeys gun switching tutorial
@@ -9,9 +9,11 @@ public class WeaponManager : MonoBehaviour
     //base function is that scroll wheel and numberkeys set an integer then the integer is what determines the active weapon that is a child to this scripts object. 0 = blue, 1 = red, 2 = yellow and so on
     public int selectedWeapon = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public List<Gun> gunList = new List<Gun>();
     void Start()
     {
         SelectWeapon();
+        SetFireState(true);
     }
 
     // Update is called once per frame
@@ -61,6 +63,14 @@ public class WeaponManager : MonoBehaviour
             else
                 weapon.gameObject.SetActive(false);
             i++;
+        }
+    }
+    //I feel like this should not be here, just feels like an awkward way to do it compared to everything else
+    public void SetFireState(bool firable)
+    {
+        foreach(Gun gun in gunList)
+        {
+            gun.fireable = firable;
         }
     }
 }

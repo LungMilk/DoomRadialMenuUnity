@@ -24,7 +24,7 @@ public class RadialMenu : MonoBehaviour
     //I do not think the answer is to have a refernce to the weapons whmeselves nor the player inventory.
     //public void InitializeData(Dictionary<int,GameObject> objectDictionary)
     //{
-        //entryDictionary = objectDictionary;
+    //    entryDictionary = objectDictionary;
     //}
     void AddEntry( int i)
     {
