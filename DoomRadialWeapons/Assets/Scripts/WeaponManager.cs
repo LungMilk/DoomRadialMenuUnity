@@ -49,6 +49,7 @@ public class WeaponManager : MonoBehaviour
     public void SetWeapon(int i)
     {
         selectedWeapon = i;
+        SelectWeapon();
     }
     void SelectWeapon()
     {

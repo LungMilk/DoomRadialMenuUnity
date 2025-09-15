@@ -6,7 +6,8 @@ public class RadialMenu : MonoBehaviour
     GameObject EntryPrefab;
 
     public List<RadialMenuEntry> Entries;
-    private Dictionary<int,GameObject> entryDictionary;
+    //I now realize I never needed a game object I can just set the weapon manager to select the weapon as the weapon should handle everything.
+    //private Dictionary<int,GameObject> entryDictionary;
     //a get set would be a good idea here
     public bool radialMenuOpen = false;
     public int maxEntries = 3;
@@ -21,17 +22,17 @@ public class RadialMenu : MonoBehaviour
     //how can we avoid update cause I think the radial menu should handle communication with all the buttons and can have the most recent selected value;
     //when we add an entry we could also assign it a weapon reference (but then the weapon references are not connected and The programmer just has to know)
     //I do not think the answer is to have a refernce to the weapons whmeselves nor the player inventory.
-    public void InitializeData(Dictionary<int,GameObject> objectDictionary)
-    {
-        entryDictionary = objectDictionary;
-    }
-    void AddEntry(GameObject entryRef, int i)
+    //public void InitializeData(Dictionary<int,GameObject> objectDictionary)
+    //{
+        //entryDictionary = objectDictionary;
+    //}
+    void AddEntry( int i)
     {
         GameObject entry = Instantiate(EntryPrefab, transform);
         RadialMenuEntry radialMenuEntry = entry.GetComponent<RadialMenuEntry>();
 
-        string label = entryRef.name.ToString();
-        radialMenuEntry.SetLabel(label);
+        //string label = entryRef.name.ToString();
+        radialMenuEntry.SetLabel("Button " + i.ToString());
         radialMenuEntry.SetitemReference(i);
         Entries.Add(radialMenuEntry);
     }
@@ -41,7 +42,7 @@ public class RadialMenu : MonoBehaviour
         for(int i=0; i<maxEntries; i++)
         {
             //the For is the gun reference with I
-            AddEntry(entryDictionary[i],i);
+            AddEntry(i);
         }
         Rearrange();
     }

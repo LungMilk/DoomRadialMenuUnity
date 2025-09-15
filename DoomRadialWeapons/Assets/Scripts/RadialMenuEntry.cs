@@ -16,7 +16,7 @@ public class RadialMenuEntry : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public event Action<int> OnButtonClicked;
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicked " + label);
+        Debug.Log("Clicked " + label.text);
         OnButtonClicked?.Invoke(itemReference);
         //when it is clicked how does it set the item reference,
     }
